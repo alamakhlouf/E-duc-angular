@@ -1,0 +1,28 @@
+<div class="card quiz-card position-relative shadow-sm">
+    <div (click)="goToDetails(quiz.idQuiz)" class="main-card">
+        <img class="card-img-top"
+            src="https://media.istockphoto.com/id/1616906708/vector/vector-speech-bubble-with-quiz-time-words-trendy-text-balloon-with-geometric-grapic-shape.jpg?s=612x612&w=0&k=20&c=3-qsji8Y5QSuShaMi6cqONlVZ3womknA5CiJ4PCeZEI="
+            alt="Card image cap" />
+    </div>
+    <div class="card-body custom-card-body text-start">
+        <div class="dropdown float-end">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                ➕
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" [routerLink]="['/editQuiz', quiz.idQuiz]">Edit Quiz</a></li>
+                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#deleteCourseModal"
+                        (click)="setDeleteCourseId(quiz.idQuiz)">Delete Quiz</a></li>
+            </ul>
+        </div>
+        <span class="badge bg-primary">{{ quiz.difficulty }}</span>
+        <span class="badge bg-secondary">{{ quiz.price }}DT</span>
+        <h5 class="card-title mt-2">{{ quiz.title }}</h5>
+        <p class="card-text">{{ quiz.title }}</p>
+        <a [routerLink]="['details', quiz.idQuiz]" class="btn btn-color mt-3">
+            <ng-container *ngIf="hasQuiz; else getNow">Start Quiz</ng-container>
+            <ng-template #getNow>Get now</ng-template>
+        </a>
+    </div>
+</div>

@@ -6,9 +6,12 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import{HttpClientModule} from'@angular/common/http';
 
+import { QuizModule } from './quiz/quiz.module';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -16,6 +19,9 @@ import{HttpClientModule} from'@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule
+    QuizModule,
+    NoopAnimationsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

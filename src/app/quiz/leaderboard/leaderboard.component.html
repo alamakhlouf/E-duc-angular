@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <main *ngIf="!isloading">
+        <div id="header">
+            <h1>Ranking</h1>
+        </div>
+        <div id="leaderboard">
+            <div class="ribbon"></div>
+            <table>
+                <tr *ngFor="let item of leaderboard">
+                    <td class="number">{{leaderboard.indexOf(item)+1}}</td>
+                    <td class="name">{{item.userProfile.firstName}} {{item.userProfile.lastName}}</td>
+                    <td class="points">
+                        {{item.score}} <img *ngIf="leaderboard.indexOf(item) == 0" class="gold-medal"
+                            src="https://github.com/malunaridev/Challenges-iCodeThis/blob/master/4-leaderboard/assets/gold-medal.png?raw=true"
+                            alt="gold medal" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </main>
+</body>
+
+</html>

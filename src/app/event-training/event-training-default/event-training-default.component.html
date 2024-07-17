@@ -1,1 +1,162 @@
-<p>event-training-default works!</p>
+<ng-container *ngIf="!isLoading; else loader">
+  <ng-container *ngIf="currentUser.role.name === 'USER'">
+    <div class="blog-slider" *ngFor="let event of returnedEvents">
+      <div class="blog-slider__wrp">
+        <div class="blog-slider__item">
+          <div class="blog-slider__img">
+            <img [src]="wichImage(event.category)" alt="">
+          </div>
+          <div class="blog-slider__content">
+            <span class="blog-slider__code">{{ event.eventDateTime }}</span>
+            <div class="blog-slider__title">{{ event.title }}</div>
+            <div class="blog-slider__text">{{ event.description }}</div>
+            <a class="tooltip blog-slider__button"  (mouseenter)="getRemainingPlaces(event.id)">READ MORE
+              <span class="tooltiptext"> {{remainingPlaces}}places left</span>
+            </a>
+          </div>
+        </div>
+      </div>
+  </div>
+  </ng-container>
+  <ng-container *ngIf="currentUser.role.name === 'ADMIN'">
+    <div class="filter-wrapper">
+      <div class="dropdown" *ngIf="appliedFilter === ''">
+        <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          FILTER 
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" (click)="appliedFilter = 'byCategory'">By Category</a></li>
+          <li><a class="dropdown-item" (click)="appliedFilter = 'byAPProuval'">By approuval</a></li>
+        </ul>
+      </div>
+      <div class="dropdown" *ngIf="appliedFilter === 'byAPProuval'">
+        <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          By Approuval
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" (click)="fetchApprovedEvents()">Approuved</a></li>
+          <li><a class="dropdown-item" (click)="fetchNotApprovedEvents()">Not Approuved</a></li>
+        </ul>
+      </div>
+      <div class="dropdown" *ngIf="appliedFilter === 'byCategory'">
+        <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          By Category
+        </button>
+        <ul class="dropdown-menu" style="padding: 10px;">
+          <li *ngFor="let category of categories">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" (change)="onCategoryChange(category, $event)" [checked]="selectedCategories.includes(category)" >
+              <label class="form-check-label">{{ category }}</label>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="blog-slider" *ngFor="let event of returnedEvents">
+      <div class="blog-slider__wrp">
+        <div class="blog-slider__item">
+          <div class="blog-slider__img">
+            <img [src]="wichImage(event.category)" alt="">
+          </div>
+          <div class="blog-slider__content">
+            <span class="blog-slider__code">{{ event.eventDateTime }}</span>
+            <div class="blog-slider__title">{{ event.title }}</div>
+            <div class="blog-slider__text">{{ event.description }}</div>
+            <div class="actions_wrpper">
+              <div class="approuved_actions" *ngIf="event.isApproved">
+                <a href="#" class="blog-slider__button">READ less</a>
+              </div>
+              <div class="not_approuved_action" *ngIf="!event.isApproved">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn blog-slider__button" data-bs-toggle="modal" data-bs-target="#approveModal">
+                  Approve
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="approveModal" tabindex="-1" aria-labelledby="approveModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="approveModalLabel">Are You Sure You Want To Approve This Event</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        If You Click On Approve This Event Will Be Visible By All Users
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" style="background-color: #fd3838; border-color: #fe8a39 ;" (click)="onApprouveEvent(event.id)" data-bs-dismiss="modal">Approve</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                                <!-- Button trigger modal -->
+                <button type="button" class="btn blog-slider__button" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                  Delete
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="deleteModalLabel">Are You Sure You Want To Delete This Event!</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        If You Click On Delete This Event Will Deleted Permanently
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary " style="background-color: #fd3838; border-color: #fe8a39 ;" (click)="onDeleteEvent(event.id)" data-bs-dismiss="modal">Delete</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  </ng-container>
+  <ng-container *ngIf="currentUser.role.name === 'TEACHER'">
+    <div class="blog-slider" *ngFor="let event of returnedEvents">
+      <div class="blog-slider__wrp">
+        <div class="blog-slider__item">
+          <div class="blog-slider__img">
+            <img [src]="wichImage(event.category)" alt="">
+          </div>
+          <div class="blog-slider__content">
+            <span class="blog-slider__code">{{ event.eventDateTime }}</span>
+            <div class="blog-slider__title">{{ event.title }}</div>
+            <div class="blog-slider__text">{{ event.description }}</div>
+            <a href="#" class="blog-slider__button">READ MORE</a>
+          </div>
+        </div>
+      </div>
+  </div>
+  </ng-container>
+</ng-container>
+<ng-template #loader>
+  <div class="text-center">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+</ng-template>
+<!--   
+  <div class="approved-events">
+    <h2>Approved Events</h2>
+    <ul>
+      <li *ngFor="let event of approvedEvents">
+        <h3>{{ event.title }}</h3>
+        <p>{{ event.description }}</p>
+        <p>Date: {{ event.eventDateTime }}</p>
+        <p>Category: {{ event.category }}</p>
+        <p>Online: {{ event.isOnline ? 'Yes' : 'No' }}</p>
+        <p>Number of Places: {{ event.nbrOfPlaces }}</p>
+      </li>
+    </ul>
+  </div> -->
+  

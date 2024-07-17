@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #FFE53B;
+  background-image: linear-gradient(147deg, #FFE53B 0%, #fd3838 74%);
+  min-height: 100vh;
+  font-family: 'Fira Sans', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.container {
+  width: 100%;
+  padding: 0 20px;
+}
+
+.blog-slider {
+  width: calc(100% - 35px);
+  background: #fff;
+  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+  padding: 15px;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  transition: all .3s;
+  margin: 20px;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    margin: 180px auto;
+    height: auto;
+  }
+
+  @media screen and (max-height: 500px) and (min-width: 992px) {
+    height: 350px;
+  }
+
+  &__wrp {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  &__img {
+    width: 200px;
+    flex-shrink: 0;
+    height: 170px;
+    background-image: linear-gradient(147deg, #fe8a39 0%, #fd3838 74%);
+    box-shadow: 2px 4px 10px rgba(220, 56, 56, 0.2);
+    border-radius: 20px;
+    overflow: hidden;
+
+    @media screen and (max-width: 768px) {
+      width: 90%;
+      transform: translateY(-50%);
+    }
+
+    @media screen and (max-width: 576px) {
+      width: 95%;
+    }
+
+    @media screen and (max-height: 500px) and (min-width: 992px) {
+      height: 270px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 1;
+      border-radius: 20px;
+      transition: all .3s;
+    }
+  }
+
+  &__content {
+    padding-left: 25px;
+    width: 100%;
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+
+    @media screen and (max-width: 768px) {
+      padding: 0 30px;
+      margin-top: -80px;
+      text-align: center;
+    }
+
+    @media screen and (max-width: 576px) {
+      padding: 0;
+    }
+
+    > * {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  &__code {
+    color: #7b7992;
+    display: block;
+    font-weight: 500;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0d0925;
+  }
+
+  &__text {
+    color: #4e4a67;
+    line-height: 1.5em;
+  }
+
+  &__button {
+    display: inline-flex;
+    background-image: linear-gradient(147deg, #fe8a39 0%, #fd3838 74%);
+    padding: 10px 15px;
+    float: right;
+    border-radius: 50px;
+    color: #fff;
+    box-shadow: 0px 14px 80px rgba(252, 56, 56, 0.4);
+    text-decoration: none;
+    font-weight: 500;
+    justify-content: center;
+    text-align: center;
+    letter-spacing: 1px;
+    width: 15%;
+    align-self: flex-end;
+
+    &:hover {
+      background-image: linear-gradient(147deg, #fd3838 0%, #fe8a39 74%);
+    } 
+
+    @media screen and (max-width: 576px) {
+      width: 100%;
+    }
+  }
+}
+.filter-wrapper{
+  float: right;
+  margin-right: 16px;
+  margin-bottom: 15px;
+
+}
+
+.dropdown-menu{
+  cursor: pointer;
+}
+.text-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+}
+.actions_wrpper{
+  .not_approuved_action{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    justify-content: right;
+  }
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #fe8b3951;
+  color: black;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  bottom: 110%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+.tooltip .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 100%; /* At the bottom of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #fe8b3951 transparent transparent transparent;
+}

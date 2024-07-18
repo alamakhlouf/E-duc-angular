@@ -6,6 +6,7 @@ import { CreateEventComponent } from './create-event/create-event.component';
 const routes: Routes = [
   { path: '', component: EventTrainingDefaultComponent },
   { path: 'add-event', component: CreateEventComponent },
+  { path: 'edit-event/:id', component: CreateEventComponent },
 ];
 
 @NgModule({

@@ -6,13 +6,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { CreateEventComponent } from './create-event/create-event.component';
 import { FormsModule } from '@angular/forms';
+import { EditEventComponent } from './edit-event/edit-event.component';
 
 
 
 @NgModule({
   declarations: [
     EventTrainingDefaultComponent,
-    CreateEventComponent
+    CreateEventComponent,
+    EditEventComponent
   ],
   imports: [
     CommonModule,

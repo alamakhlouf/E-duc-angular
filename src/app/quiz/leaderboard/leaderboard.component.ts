@@ -18,7 +18,7 @@ export class LeaderboardComponent {
   ngOnInit() {
     this.service.getLeaderBoard(this.quizId).subscribe(
       (value) => {
-        this.leaderboard = value; console.log(this.leaderboard);
+        this.leaderboard = value.filter((leader) => leader.score != -1); console.log(this.leaderboard);
         this.isloading = false;
       }
 

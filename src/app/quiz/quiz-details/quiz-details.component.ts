@@ -28,9 +28,13 @@ export class QuizDetailsComponent {
     )
   }
   async pay(): Promise<void> {
+    console.log("AAAAAAAAAAAaa " + this.id);
+
     // here we create a payment object
     const payment = {
-      quizId: this.quizDetails.id,
+      userId: '2',
+      name: this.quizDetails.quiz.title,
+      quizId: this.id,
       currency: 'usd',
       // amount on cents *10 => to be on dollar
       amount: this.quizDetails.quiz.price * 10,

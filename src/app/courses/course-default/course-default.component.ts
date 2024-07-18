@@ -16,7 +16,7 @@ export class CourseDefaultComponent {
   categoryCount!: number;
   searchKey: string = '';
   currentPage: number = 0;
-  pagee: number=0;
+  pagee: number = 0;
   pageSize: number = 4;
   totalPages: number = 0;
   totalPagesArray: number[] = [];
@@ -30,7 +30,7 @@ export class CourseDefaultComponent {
     private courService: CourseServiceService,
     private http: HttpClient,
     private ressource: ResourceDataService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.loadCategories(0, 7, '');
@@ -56,8 +56,8 @@ export class CourseDefaultComponent {
     this.courService.getCour(page, size).subscribe(
       (data: any) => {
         this.listCour = data.courResponseBodyList;
-        this.courCount=data.courCount;
-        this.totalPages = Math.ceil(this.courCount/ this.pageSize);
+        this.courCount = data.courCount;
+        this.totalPages = Math.ceil(this.courCount / this.pageSize);
         this.totalPagesArray = new Array(this.totalPages).fill(0).map((_, index) => index + 1);
       },
       error => {
@@ -65,7 +65,7 @@ export class CourseDefaultComponent {
       }
     );
   }
- selectCategory(category: any): void {
+  selectCategory(category: any): void {
     if (this.selectedCategory === category) {
       this.selectedCategory = null;
     } else {
@@ -88,8 +88,8 @@ export class CourseDefaultComponent {
     }
   }
   pagination(page: number): void {
-    this.currentPage = page-1;
+    this.currentPage = page - 1;
     this.ngOnInit();
 
-}
+  }
 }

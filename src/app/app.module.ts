@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import{HttpClientModule} from'@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { QuizModule } from './quiz/quiz.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,9 +20,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
-    QuizModule,
+    HttpClientModule,
     NoopAnimationsModule,
+    QuizModule
 
   ],
   providers: [],

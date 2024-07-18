@@ -1,54 +1,50 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-
-import { QuizModule } from './quiz/quiz.module';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponent } from "./users/login/login.component";
-import { AdminTemplateComponent } from "./users/admin-template/admin-template.component";
-import { TestComponent } from "./users/test/test.component";
-import { NavbarComponent } from "./users/navbar/navbar.component";
-import { NewUserComponent } from "./users/new-user/new-user.component";
-import { NotAuthorizedComponent } from "./users/not-authorized/not-authorized.component";
-import { ManageProfileComponent } from "./users/manage-profile/manage-profile.component";
-import { SignupComponent } from "./users/signup/signup.component";
-import { WelcomeuserComponent } from "./users/welcomeuser/welcomeuser.component";
-import { AppHttpInterceptor } from "./users/interceptors/app-http.interceptor";
+import { HttpClientModule } from '@angular/common/http';
+import { ForumModule } from './forum/forum.module';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { ForumEditComponent } from './forum/forum-edit/forum-edit.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { ForumCreateComponent } from './forum/forum-create/forum-create.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ForumDeleteComponent } from './forum/forum-delete/forum-delete.component';
+import { ForumAnswerComponent } from './forum/forum-answer/forum-answer.component';
+import { ForumService } from './forum/forum.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AppComponent,
-    LoginComponent,
-    AdminTemplateComponent,
-    TestComponent,
-    NavbarComponent,
-    NewUserComponent,
-    NotAuthorizedComponent,
-    ManageProfileComponent,
-    SignupComponent,
-    WelcomeuserComponent
+    ForumCreateComponent,
+    ForumDeleteComponent,
+    ForumAnswerComponent,
   ],
   imports: [
+
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
-    FormsModule,
+    HttpClientModule, 
+    NgxPaginationModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    QuizModule,
-    NoopAnimationsModule,
-    QuizModule
+    MatIconModule,
+    MatFormFieldModule,
+    MatDialogModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSnackBarModule
+   
 
   ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AppHttpInterceptor, multi: true }
-  ],
-  bootstrap: [AppComponent]
-})
+    providers: [ForumService],
+    bootstrap: [AppComponent]
+  })
 export class AppModule { }

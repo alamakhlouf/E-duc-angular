@@ -47,7 +47,7 @@ export class LoginComponent {
 
 
   redirectToSignup(): void {
-    window.location.href = 'http://localhost:8083/auth/admin';
+    window.location.href = 'http://localhost:8081/auth/admin';
   }
 
   redirectToSignUp() {

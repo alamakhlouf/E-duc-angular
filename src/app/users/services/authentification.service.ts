@@ -21,7 +21,7 @@ export class AuthentificationService {
       headers : new HttpHeaders().set("Content-Type","application/x-www-form-urlencoded")
     }
     let params = new HttpParams().set("username", username).set("password", password);
-    return this.http.post("http://localhost:8083/auth/login", params, options)
+    return this.http.post("http://localhost:8081/auth/login", params, options)
   }
 
   loadProfile(data: any) {
@@ -50,7 +50,7 @@ export class AuthentificationService {
   }
 
   register(userData: any): Observable<any> {
-    return this.http.post<any>("http://localhost:8083/register", userData);
+    return this.http.post<any>("http://localhost:8081/register", userData);
   }
 
 

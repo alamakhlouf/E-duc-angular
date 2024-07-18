@@ -54,7 +54,7 @@ export class ManageProfileComponent {
         'Authorization': `Bearer ${token}`
       });
 
-      this.http.post('http://localhost:8083/api/user/update', formData, { headers, observe: 'response', responseType: 'text' }).subscribe(
+      this.http.post('http://localhost:8081/api/user/update', formData, { headers, observe: 'response', responseType: 'text' }).subscribe(
         response => {
           console.log('Profile updated', response);
           if (response.status === 200) {

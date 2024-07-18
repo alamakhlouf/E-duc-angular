@@ -7,7 +7,7 @@ import { Event, EventCategory } from '../models/event.models';
   providedIn: 'root'
 })
 export class EventsService {
-  private baseUrl = 'http://localhost:8081/api/events'; 
+  private baseUrl = 'http://localhost:8081/api/events';
 
   constructor(private http: HttpClient) { }
 
@@ -47,15 +47,15 @@ export class EventsService {
     return this.http.get<number>(`${this.baseUrl}/remaining-places/${eventId}`);
   }
 
-  getCurrentUser(){
+  getCurrentUser() {
     return {
       "firstName": "John",
       "lastName": "Doe",
       "email": "johndoe@example.com",
       "phoneNum": 1234567890,
       "role": {
-          "idRole": 1,
-          "name": "ADMIN"
+        "idRole": 1,
+        "name": "ADMIN"
       },
     }
   }

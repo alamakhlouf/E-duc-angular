@@ -55,7 +55,7 @@ export class EventsService {
       "phoneNum": 1234567890,
       "role": {
           "idRole": 1,
-          "name": "USER"
+          "name": "ADMIN"
       },
     }
   }

@@ -24,7 +24,9 @@ export class CreateEventComponent implements OnInit {
 
   constructor(private eventService: EventsService, private router: Router) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+
+   }
 
   onSubmit(): void {
     this.eventService.addEvent(this.event, this.userId).subscribe(     

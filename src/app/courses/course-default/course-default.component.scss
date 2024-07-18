@@ -1,0 +1,176 @@
+section {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+.filter-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.category-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.category-button {
+  padding: 10px 15px;
+  border: 1px solid #FF9500;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #FF9500;
+  cursor: pointer;
+}
+
+.category-button:hover, .category-button.active {
+  background-color: #FF9500;
+  color: #fff;
+}
+
+.courses-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.course-card {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.course-card img {
+  max-width: 100%;
+  border-radius: 8px 8px 0 0;
+}
+
+.course-card h2 {
+  font-size: 1.5em;
+  margin: 10px 0;
+}
+
+.course-card p {
+  font-size: 1em;
+  color: #666;
+}
+
+.course-card .category,
+.course-card .type {
+  display: block;
+  font-size: 0.9em;
+  color: #999;
+  margin-top: 10px;
+}
+
+.course-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #FF9500;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #FF9500;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination-button {
+  padding: 5px 10px; /* Adjusted for smaller size */
+  border: none;
+  border-radius: 4px;
+  margin: 0 3px; /* Adjusted for smaller size */
+  background-color: #FF9500;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.pagination-button:hover:not(.disabled) {
+  background-color: #ff7700;
+  transform: scale(1.1);
+}
+
+.pagination-button.disabled {
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+}
+
+.pagination-button.disabled:hover {
+  background-color: #cccccc;
+  transform: none;
+}
+
+.add-chapitre-btn {
+  padding: 10px 20px; /* Taille du bouton */
+  border: none;
+  border-radius: 50%; /* Forme ronde */
+  background-color: #FF9500; /* Couleur de fond */
+  color: #fff; /* Couleur du texte */
+  font-size: 24px; /* Taille du texte */
+  font-weight: bold; /* Gras */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombrage */
+  position: fixed; /* Position fixe */
+  bottom: 20px; /* Espace du bas */
+  right: 20px; /* Espace de droite */
+  z-index: 1000; /* Toujours au-dessus */
+}
+
+.add-chapitre-btn:hover {
+  background-color: #ff7700;
+  transform: scale(1.1); /* Agrandissement au survol */
+}
+
+.add-chapitre-btn:active {
+  background-color: #e65c00;
+  transform: scale(0.95); /* Rétrécissement lors du clic */
+}
+
+

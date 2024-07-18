@@ -1,0 +1,74 @@
+<div class="forum-header">
+  <h2>List of Forums</h2>
+</div>
+
+<div class="action-bar">
+  <div class="create-button">
+    <button mat-raised-button color="primary" (click)="openCreateForumDialog()">Create Forum</button>
+  </div>
+  <div class="search-bar">
+    <input [(ngModel)]="searchTitle" placeholder="Search by title" />
+    <button mat-raised-button color="primary" (click)="searchForums()">Search</button>
+  </div>
+</div>
+
+
+<div class="forum-list">
+
+  <div *ngFor="let forum of forums | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }" class="forum-item">
+    <div class="header">
+      <h2>
+        {{ forum.title }}
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="More options" class="edit-button">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </h2>
+      <div class="meta-info">
+        <p>Posted by: <span class="creator-info">{{ forum.postedBy }}</span> on {{ forum.dateCreation | date }}</p>
+      </div>
+    </div>
+
+    <p>{{ forum.description }}</p>
+
+    <div class="forum-details">
+      <div class="counts-container">
+        <div class="like-count">
+          <button mat-icon-button (click)="likeForum(forum)">
+            <mat-icon>thumb_up</mat-icon>
+          </button>
+          {{ forum.likeCount }} Likes
+        </div>
+        <div class="view-count">
+          <mat-icon>remove_red_eye</mat-icon> {{ forum.viewCount }} Views
+        </div>
+      </div>
+    </div>
+
+    <div class="answers">
+      <h3>Answers</h3>
+      <div *ngIf="forum.answer.length > 0">
+        <div *ngFor="let answer of forum.answer" class="answer-item">
+          <p>{{ answer.answerDescription }}</p>
+          <div class="answer-creator-info">Answered by {{ answer.userProfile?.username }}</div>
+        </div>
+      </div>
+      <div *ngIf="forum.answer.length === 0">
+        <p>No answers yet.</p>
+      </div>
+      <button mat-raised-button color="primary" (click)="openAddAnswerDialog(forum.idNews)">Add Answer</button>
+    </div>
+
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="openEditDialog(forum)">
+        <mat-icon>edit</mat-icon>
+        <span>Edit</span>
+      </button>
+      <button mat-menu-item (click)="deleteForum(forum)">
+        <mat-icon>delete</mat-icon>
+        <span>Delete</span>
+      </button>
+    </mat-menu>
+  </div>
+  
+  <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+</div>

@@ -1,14 +1,11 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { ForumListComponent } from './forum-list/forum-list.component';
-import { ForumEditComponent } from './forum-edit/forum-edit.component';
-
-
+import { RouterModule, Routes } from '@angular/router';
+import { ForumDefaultComponent } from './forum-default/forum-default.component';
 
 const routes: Routes = [
-  { path: '', component: ForumListComponent },
-  { path: 'edit', component: ForumEditComponent }
-]
+  { path: '', component: ForumDefaultComponent },
+];
+
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

@@ -1,0 +1,115 @@
+  .container {
+    width: 100%;
+    padding: 0 20px;
+  
+    form {
+      margin-top: 20px;
+  
+      div {
+        margin-bottom: 15px;
+        
+        label {
+          display: block;
+          margin-bottom: 5px;
+          font-weight: bold;
+        }
+
+        input[type="text"],
+        textarea {
+          resize: none; 
+        }
+  
+        input[type="text"],
+        textarea,
+        input[type="date"],
+        select,
+        input[type="number"] {
+          width: 100%;
+          padding: 8px;
+          font-size: 16px;
+          border: 1px solid #ccc;
+          border-radius: 10px;
+          box-sizing: border-box;
+        }
+        .toggle-container {
+            display: flex;
+            align-items: center;
+    
+            .toggle {
+              position: relative;
+              display: inline-block;
+              width: 60px;
+              height: 34px;
+    
+              input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+              }
+    
+              .slider {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #ccc;
+                transition: .4s;
+                border-radius: 34px;
+    
+                &:before {
+                  position: absolute;
+                  content: "";
+                  height: 26px;
+                  width: 26px;
+                  left: 4px;
+                  bottom: 4px;
+                  background-color: white;
+                  transition: .4s;
+                  border-radius: 50%;
+                }
+              }
+    
+              input:checked + .slider {
+                background-color: #2196F3;
+              }
+    
+              input:checked + .slider:before {
+                transform: translateX(26px);
+              }
+    
+              .slider.round {
+                border-radius: 34px;
+              }
+            }
+        }
+      }
+
+      .checkbox_div{
+        display: flex;
+        justify-content: space-between;
+      }
+  
+      button[type="submit"] {
+        background-image: linear-gradient(147deg, #fe8a39 0%, #fd3838 74%);
+        color: #fff;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+  
+        &:disabled {
+          opacity: 0.3;
+          cursor: not-allowed;
+        }
+  
+        &:hover:not(:disabled) {
+            background-image: linear-gradient(147deg, #fd3838 0%, #fe8a39 74%);
+        }
+      }
+    }
+  }
+  

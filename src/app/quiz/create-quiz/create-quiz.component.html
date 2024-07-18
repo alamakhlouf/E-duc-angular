@@ -8,15 +8,23 @@
         <div class="form-group mt-3">
             <label for="difficulty">Difficulty</label>
             <select id="difficulty" class="form-control" formControlName="difficulty">
-                <option value="easy">Easy</option>
-                <option value="medium">Medium</option>
-                <option value="hard">Hard</option>
+                <option value="NORMAL">NORMAL</option>
+                <option value="INTERMEDIATE">INTERMEDIATE</option>
+                <option value="HARD">HARD</option>
             </select>
+        </div>
+        <div class="form-group mt-3">
+            <label for="description">Description</label>
+            <textarea id="description" class="form-control" formControlName="description"></textarea>
+        </div>
+        <div class="form-group form-check mt-3">
+            <input type="checkbox" id="certified" class="form-check-input" formControlName="certified">
+            <label for="certified" class="form-check-label">Certified</label>
         </div>
         <div class="d-flex justify-content-between mt-3">
             <button type="button" class="btn btn-color" data-bs-toggle="modal" data-bs-target="#questionModal">Add
                 Question</button>
-            <button type="submit" class="btn btn-save-color" [disabled]="questions.length < 5">Save Quiz</button>
+            <button type="submit" class="btn btn-save-color" [disabled]="questions.length < 1">Save Quiz</button>
         </div>
 
         <div class="mt-4" *ngFor="let question of questions; let i = index">

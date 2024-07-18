@@ -19,7 +19,9 @@ export class CreateQuizComponent {
   constructor(private fb: FormBuilder, private quizService: QuizServiceService) {
     this.quizForm = this.fb.group({
       title: ['', Validators.required],
-      difficulty: ['', Validators.required]
+      difficulty: ['', Validators.required],
+      description: ['', Validators.required],
+      certified: [false]
     });
 
     this.questionForm = this.fb.group({
@@ -76,10 +78,12 @@ export class CreateQuizComponent {
   }
 
   saveQuiz(): void {
-    if (this.quizForm.valid && this.questions.length >= 5) {
+    if (this.quizForm.valid && this.questions.length >= 1) {
       const quizData = {
         title: this.quizForm.value.title,
         difficulty: this.quizForm.value.difficulty,
+        description: this.quizForm.value.description,
+        certified: this.quizForm.value.certified,
         questions: this.questions
       };
       this.quizService.createQuiz(quizData).subscribe(response => {

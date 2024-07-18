@@ -6,42 +6,49 @@ import { QuizDetailsModel } from '../models/response_models/quiz-details-models'
 import { LeaderBoardModel } from '../models/response_models/leaderboard-model';
 import { UserModel } from '../models/response_models/user-model';
 import { environment } from '../env';
+import { AuthentificationService } from 'src/app/users/services/authentification.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuizServiceService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authservice: AuthentificationService) { }
 
   getQuizList() {
-    return this.http.get<QuizListModel[]>("http://localhost:8081/Quiz/getQuizList/2")
+    const headers = { 'Authorization': 'Bearer ' + this.authservice.accessToken }
+    return this.http.get<QuizListModel[]>("http://localhost:8081/Quiz/getQuizList/2", { headers })
   }
 
   getQuizDetails(id: string) {
-    return this.http.get<QuizDetailsModel>("http://localhost:8081/personalQuiz/getPersonalQuiz/2/" + id);
+    const headers = { 'Authorization': 'Bearer ' + this.authservice.accessToken }
+    return this.http.get<QuizDetailsModel>("http://localhost:8081/personalQuiz/getPersonalQuiz/2/" + id, { headers });
   }
 
   passQuiz(quizId: string, score: number) {
-    return this.http.post("http://localhost:8081/personalQuiz/passQuiz", { userId: 2, quizId: quizId, score: score })
+    const headers = { 'Authorization': 'Bearer ' + this.authservice.accessToken }
+    return this.http.post("http://localhost:8081/personalQuiz/passQuiz", { userId: 2, quizId: quizId, score: score }, { headers })
   }
 
   createQuiz(quiz: any) {
-    return this.http.post("http://localhost:8081/Quiz/createQuiz", quiz)
+    const headers = { 'Authorization': 'Bearer ' + this.authservice.accessToken }
+    return this.http.post("http://localhost:8081/Quiz/createQuiz", quiz, { headers })
   }
 
   deleteQuiz(quizId: string) {
-    return this.http.delete("http://localhost:8081/Quiz/deleteQuiz/" + quizId, { responseType: "text" });
+    const headers = { 'Authorization': 'Bearer ' + this.authservice.accessToken }
+    return this.http.delete("http://localhost:8081/Quiz/deleteQuiz/" + quizId, { responseType: "text", headers });
   }
 
   getLeaderBoard(quizId: string) {
-    return this.http.get<LeaderBoardModel[]>("http://localhost:8081/personalQuiz/leaderBoard/" + quizId);
+    const headers = { 'Authorization': 'Bearer ' + this.authservice.accessToken }
+    return this.http.get<LeaderBoardModel[]>("http://localhost:8081/personalQuiz/leaderBoard/" + quizId, { headers });
   }
 
   payQuiz(payment: any, stripe: any) {
-    // this is a normal http calls for a backend api
+    const headers = { 'Authorization': 'Bearer ' + this.authservice.accessToken }
     this.http
-      .post(`http://localhost:8081/payment/payment`, payment)
+      .post(`http://localhost:8081/payment/payment`, payment, { headers })
       .subscribe((data: any) => {
         // I use stripe to redirect To Checkout page of Stripe platform
         stripe.redirectToCheckout({

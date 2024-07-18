@@ -64,7 +64,7 @@
             <div class="blog-slider__text">{{ event.description }}</div>
             <div class="actions_wrpper">
               <div class="approuved_actions" *ngIf="event.isApproved">
-                <a href="#" class="blog-slider__button">READ less</a>
+                <a [routerLink]="['/training-events/edit-event', event.id]" class="blog-slider__button">Edit</a>
               </div>
               <div class="not_approuved_action" *ngIf="!event.isApproved">
                 <!-- Button trigger modal -->

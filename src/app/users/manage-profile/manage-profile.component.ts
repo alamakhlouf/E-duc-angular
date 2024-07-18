@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {AuthentificationService} from "../services/authentification.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-manage-profile',
@@ -14,7 +15,7 @@ export class ManageProfileComponent {
   selectedFile: File | null = null;
   token: string | null = null;
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private authService: AuthentificationService) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private authService: AuthentificationService, private router: Router) {
     this.profileForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -71,6 +72,7 @@ export class ManageProfileComponent {
           } else {
             console.error('Unexpected response status', response);
             alert('Unexpected response status.');
+            this.router.navigateByUrl("/welcome")
           }
         },
         error => {
@@ -78,15 +80,20 @@ export class ManageProfileComponent {
           if (error.status === 200) {
             console.warn('Received 200 response but entered error block', error);
             alert('Profile updated successfully!');
+            this.router.navigateByUrl("/welcome")
           } else {
             alert('Error updating profile.');
+            this.router.navigateByUrl("/welcome")
           }
         }
       );
     } else {
       alert('Please fill out all fields correctly.');
+      this.router.navigateByUrl("/welcome")
     }
+    this.router.navigateByUrl("/admin")
   }
+
 
 
 }

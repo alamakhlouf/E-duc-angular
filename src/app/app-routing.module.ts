@@ -17,17 +17,17 @@ const routes: Routes = [
   { path: 'users', loadChildren: () => import('./users/users.module').then(m => m.UsersModule) },
   { path: 'forum', loadChildren: () => import('./forum/forum.module').then(m => m.ForumModule) },
   { path: 'training-events', loadChildren: () => import('./event-training/event-training.module').then(m => m.EventTrainingModule) },
-  {path : '', redirectTo: '/login', pathMatch: 'full'},
   { path: 'signup', component: SignupComponent },
   {path : 'login' , component: LoginComponent},
+  {path : 'manageprofile' , component: ManageProfileComponent},
   { path: 'welcome', component: WelcomeuserComponent },
   {path : 'admin' , component: AdminTemplateComponent, canActivate : [AuthentificationGuard]
     , children :[
       {path : 'test' , component: TestComponent},
       {path : 'new-user' , component: NewUserComponent, canActivate : [AuthorizationGuard], data: {role:"ADMIN"}},
       {path:"notAuthorized", component : NotAuthorizedComponent},
-      {path : 'manageprofile' , component: ManageProfileComponent},
     ]},
+  {path : '', redirectTo: '/login', pathMatch: 'full'},
 ];
 
 @NgModule({

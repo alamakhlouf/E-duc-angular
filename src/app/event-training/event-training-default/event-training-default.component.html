@@ -19,6 +19,7 @@
     </div>
   </ng-container>
   <ng-container *ngIf="currentUser.role.name === 'ADMIN'">
+    <button [routerLink]="['add-event']">add</button>
     <div class="filter-wrapper">
       <div class="dropdown" *ngIf="appliedFilter === ''">
         <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">

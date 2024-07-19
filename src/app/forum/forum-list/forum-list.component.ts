@@ -7,7 +7,7 @@ import { ForumEditComponent } from 'src/app/forum/forum-edit/forum-edit.componen
 import { ForumCreateComponent } from 'src/app/forum/forum-create/forum-create.component';
 import { ForumDeleteComponent } from 'src/app/forum/forum-delete/forum-delete.component';
 import { ForumAnswerComponent } from 'src/app/forum/forum-answer/forum-answer.component';
-import {Answer } from '../forum.model';
+import { Answer } from '../forum.model';
 
 
 
@@ -24,7 +24,7 @@ export class ForumListComponent implements OnInit {
   currentPage: number = 1;
   itemsPerPage: number = 6;
   searchTitle: string = '';
-  selectedForum: Forum | null = null; 
+  selectedForum: Forum | null = null;
   newAnswer: Answer | null = null;
 
 
@@ -59,7 +59,7 @@ export class ForumListComponent implements OnInit {
       // Actualiser la liste des forums ou effectuer d'autres actions si nécessaire
     });
   }
-  
+
 
   openEditDialog(forum: Forum): void {
     const dialogRef = this.dialog.open(ForumEditComponent, {
@@ -78,7 +78,7 @@ export class ForumListComponent implements OnInit {
     const dialogRef = this.dialog.open(ForumDeleteComponent, {
       width: '400px'
     });
-  
+
     dialogRef.afterClosed().subscribe(result => {
       if (result === true) {
         this.forumService.deleteForum(forum.idNews).subscribe(
@@ -94,7 +94,7 @@ export class ForumListComponent implements OnInit {
       }
     });
   }
-  
+
 
 
 
@@ -136,7 +136,7 @@ export class ForumListComponent implements OnInit {
 
 
   showForumDetails(forum: Forum) {
-    forum.answer = []; 
+    forum.answer = [];
 
     this.forumService.getAnswerById(forum.idNews).subscribe((detailedForum) => {
       forum.answer = detailedForum.answer;

@@ -4,7 +4,7 @@
   <!-- Cartes des chapitres -->
   <div class="chapitre-card" *ngFor="let ch of listChapitre">
     <!-- Image du chapitre -->
-    <img [src]="'http://localhost:8080/download/'+ch.coverPicture" alt="Image du chapitre">
+    <img [src]="'http://localhost:8081/download/'+ch.coverPicture" alt="Image du chapitre">
 
     <!-- Contenu du chapitre -->
     <div class="chapitre-info">
@@ -12,13 +12,10 @@
       <p class="brief-description">{{ ch.description }}</p>
       <p class="duree">Durée estimée: {{ch.duration}} </p>
     </div>
-    <button
-    class="start-chapitre-btn"
-    [routerLink]="getRouterLink(ch)"
-    [disabled]="!chapitreStatus[ch.idChapitre] && ch.indexChapitre !== 1 "
-  >
-    Start Chapter
-  </button>
+    <button class="start-chapitre-btn" [routerLink]="getRouterLink(ch)"
+      [disabled]="!chapitreStatus[ch.idChapitre] && ch.indexChapitre !== 1 ">
+      Start Chapter
+    </button>
 
     <div class="options">
       <!-- Bouton pour afficher le menu contextuel -->
@@ -27,7 +24,7 @@
           <i class="fa fa-ellipsis-v"></i>
         </button>
         <div id="dropdown-{{ ch.idChapitre }}" class="dropdown-content">
-          <button  [routerLink]="['/courses/updateChapitre',currentId,ch.idChapitre]">Modifier</button>
+          <button [routerLink]="['/courses/updateChapitre',currentId,ch.idChapitre]">Modifier</button>
           <button (click)="deleteChapitre(ch.idChapitre)">Supprimer</button>
         </div>
       </div>
@@ -37,7 +34,3 @@
   <!-- Bouton "Ajouter un chapitre" -->
   <button class="add-chapitre-btn" [routerLink]="['/courses/create-chapitre', currentId]">+</button>
 </div>
-
-
-
-

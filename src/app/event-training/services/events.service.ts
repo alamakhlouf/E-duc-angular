@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Event, EventCategory } from '../models/event.models';
+import { AuthentificationService } from 'src/app/users/services/authentification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,29 +10,35 @@ import { Event, EventCategory } from '../models/event.models';
 export class EventsService {
   private baseUrl = 'http://localhost:8081/api/events';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authservice: AuthentificationService) { }
 
   getApprovedEvents(): Observable<Event[]> {
-    return this.http.get<Event[]>(`${this.baseUrl}/approved`);
+    const headers = { 'Authorization': 'Bearer ' + this.authservice.accessToken }
+    return this.http.get<Event[]>(`${this.baseUrl}/approved`, { headers });
   }
 
   getNotApprovedEvents(): Observable<Event[]> {
-    return this.http.get<Event[]>(`${this.baseUrl}/notApproved`);
+    const headers = { 'Authorization': 'Bearer ' + this.authservice.accessToken }
+    return this.http.get<Event[]>(`${this.baseUrl}/notApproved`, { headers });
   }
 
   addEvent(event: Event, userId: number): Observable<Event> {
-    return this.http.post<Event>(`${this.baseUrl}/addEvent/${userId}`, event);
+    const headers = { 'Authorization': 'Bearer ' + this.authservice.accessToken }
+    return this.http.post<Event>(`${this.baseUrl}/addEvent/${userId}`, event, { headers });
   }
 
   getAllEvents(): Observable<Event[]> {
-    return this.http.get<Event[]>(`${this.baseUrl}/all`);
+    const headers = { 'Authorization': 'Bearer ' + this.authservice.accessToken }
+    return this.http.get<Event[]>(`${this.baseUrl}/all`, { headers });
   }
 
   getPersonalEvents(): Observable<Event[]> {
-    return this.http.get<Event[]>(`${this.baseUrl}/personalEvents`);
+    const headers = { 'Authorization': 'Bearer ' + this.authservice.accessToken }
+    return this.http.get<Event[]>(`${this.baseUrl}/personalEvents`, { headers });
   }
 
   deleteEvent(eventId: number): Observable<Event> {
+
     return this.http.delete<Event>(`${this.baseUrl}/delete/${eventId}`);
   }
 

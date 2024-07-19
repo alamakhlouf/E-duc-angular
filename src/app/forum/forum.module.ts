@@ -13,15 +13,21 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { RouterModule } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-
+import { ForumDeleteComponent } from './forum-delete/forum-delete.component';
+import { ForumCreateComponent } from './forum-create/forum-create.component';
+import { ForumAnswerComponent } from './forum-answer/forum-answer.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
 @NgModule({
   declarations: [
-    ForumListComponent, 
-    ForumEditComponent
-    
+    ForumListComponent,
+    ForumEditComponent,
+    ForumDeleteComponent,
+    ForumCreateComponent,
+    ForumAnswerComponent,
+
   ],
   imports: [
     CommonModule,
@@ -37,10 +43,11 @@ import { MatInputModule } from '@angular/material/input';
     HttpClientModule,
     MatFormFieldModule,
     MatInputModule,
-    RouterModule
+    RouterModule,
+    MatSnackBarModule,
 
 
-     
+
   ],
   exports: [ForumListComponent, ForumEditComponent]
 })

@@ -15,7 +15,8 @@
 
 <div class="forum-list">
 
-  <div *ngFor="let forum of forums | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }" class="forum-item">
+  <div *ngFor="let forum of forums | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }"
+    class="forum-item">
     <div class="header">
       <h2>
         {{ forum.title }}
@@ -49,7 +50,7 @@
       <div *ngIf="forum.answer.length > 0">
         <div *ngFor="let answer of forum.answer" class="answer-item">
           <p>{{ answer.answerDescription }}</p>
-          <div class="answer-creator-info">Answered by {{ answer.userProfile?.username }}</div>
+          <div class="answer-creator-info">Answered by {{ answer.userProfile.username }}</div>
         </div>
       </div>
       <div *ngIf="forum.answer.length === 0">
@@ -69,6 +70,6 @@
       </button>
     </mat-menu>
   </div>
-  
+
   <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
 </div>

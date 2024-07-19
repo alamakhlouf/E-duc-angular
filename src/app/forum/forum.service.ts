@@ -9,7 +9,7 @@ import { Forum, Answer } from './forum.model';
   providedIn: 'root'
 })
 export class ForumService {
-  private apiUrl = 'http://localhost:8089/api';
+  private apiUrl = 'http://localhost:8081/api';
 
   constructor(private http: HttpClient) { }
 
@@ -20,7 +20,7 @@ export class ForumService {
 
 
   getForumById(idNews: string): Observable<Forum> {
-    const url = `${this.apiUrl}/getAllNewsForum/${idNews}`; 
+    const url = `${this.apiUrl}/getAllNewsForum/${idNews}`;
     return this.http.get<Forum>(url);
   }
 
@@ -29,7 +29,7 @@ export class ForumService {
     return this.http.put(`${this.apiUrl}/updateNewsForum`, formData);
   }
 
-   
+
   deleteForum(forumId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/deleteNewsForumById/${forumId}`);
   }
@@ -58,5 +58,5 @@ export class ForumService {
   getAnswerById(forumId: number): Observable<Forum> {
     return this.http.get<Forum>(`${this.apiUrl}/getAllAnswer/${forumId}`);
   }
-  
+
 }

@@ -29,10 +29,9 @@ export class QuizDetailsComponent {
   }
   async pay(): Promise<void> {
     console.log("AAAAAAAAAAAaa " + this.id);
-
     // here we create a payment object
     const payment = {
-      userId: '2',
+      userId: localStorage.getItem("id"),
       name: this.quizDetails.quiz.title,
       quizId: this.id,
       currency: 'usd',
@@ -50,7 +49,7 @@ export class QuizDetailsComponent {
   }
 
   click() {
-    if (this.quizDetails.score == -1)
+    if (this.quizDetails.score == null)
       this.pay()
     else
       this.startQuiz()

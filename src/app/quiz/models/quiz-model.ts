@@ -11,4 +11,6 @@ export class QuizModel {
     difficulty!: string;
 
     price!: number;
+    certified!: Boolean;
+    description!: string;
 }

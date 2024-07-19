@@ -13,6 +13,8 @@ export class AuthentificationService {
   roles: any;
   username: any;
   accessToken!: any;
+  role!: any;
+  id!: any;
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -26,7 +28,12 @@ export class AuthentificationService {
 
   loadProfile(data: any) {
     this.isAuthenticated = true;
+    localStorage.setItem("access-token", data['access-token'])
+    localStorage.setItem("role", data['role'])
+    localStorage.setItem("id", data['id'])
     this.accessToken = data['access-token'];
+    this.role = data['role'];
+    this.id = data['id'];
     let decodedJwt: any = jwtDecode(this.accessToken);
     this.username = decodedJwt.sub;
     this.roles = decodedJwt.scope;

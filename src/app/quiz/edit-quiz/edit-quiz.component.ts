@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { QuizServiceService } from '../services/quiz-service.service';
@@ -9,7 +9,7 @@ import { QuizServiceService } from '../services/quiz-service.service';
   templateUrl: './edit-quiz.component.html',
   styleUrls: ['./edit-quiz.component.scss']
 })
-export class EditQuizComponent {
+export class EditQuizComponent implements OnInit {
   quizForm: FormGroup;
   questionForm: FormGroup;
   questions: any[] = [];
@@ -23,7 +23,9 @@ export class EditQuizComponent {
   ) {
     this.quizForm = this.fb.group({
       title: ['', Validators.required],
-      difficulty: ['', Validators.required]
+      difficulty: ['', Validators.required],
+      description: ['', Validators.required],
+      certified: [false]
     });
 
     this.questionForm = this.fb.group({
@@ -37,7 +39,7 @@ export class EditQuizComponent {
   }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id']; // Assuming the route contains the quiz ID
+    this.id = this.route.snapshot.params['id'];
     this.loadQuiz(this.id);
   }
 
@@ -86,6 +88,8 @@ export class EditQuizComponent {
       const quizData = {
         title: this.quizForm.value.title,
         difficulty: this.quizForm.value.difficulty,
+        description: this.quizForm.value.description,
+        certified: this.quizForm.value.certified,
         questions: this.questions
       };
       this.http.put(`your-api-url/quizzes/${this.id}`, quizData).subscribe(response => {
@@ -106,7 +110,9 @@ export class EditQuizComponent {
     this.quizService.getQuizDetails(this.id).subscribe(data => {
       this.quizForm.patchValue({
         title: data.quiz.title,
-        difficulty: data.quiz.difficulty
+        difficulty: data.quiz.difficulty,
+        description: data.quiz.description,
+        certified: data.quiz.certified
       });
       this.questions = data.quiz.questions;
     });

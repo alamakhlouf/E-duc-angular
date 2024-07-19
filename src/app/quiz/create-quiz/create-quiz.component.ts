@@ -21,7 +21,8 @@ export class CreateQuizComponent {
       title: ['', Validators.required],
       difficulty: ['', Validators.required],
       description: ['', Validators.required],
-      certified: [false]
+      certified: [false],
+      price: [0, [Validators.required, Validators.min(0)]]
     });
 
     this.questionForm = this.fb.group({
@@ -44,7 +45,7 @@ export class CreateQuizComponent {
 
   isQuestionFormValid(): boolean {
     const question = this.questionForm.value;
-    question.responseList = question.responseList.filter((response: String) => response.trim() !== ''); // Remove empty responses
+    question.responseList = question.responseList.filter((response: string) => response.trim() !== ''); // Remove empty responses
 
     return this.questionForm.valid && question.responseList.length > 1 && this.correctResponseControl.value !== null;
   }
@@ -52,7 +53,7 @@ export class CreateQuizComponent {
   saveQuestion(): void {
     if (this.isQuestionFormValid()) {
       const question = this.questionForm.value;
-      question.responseList = question.responseList.filter((response: String) => response.trim() !== ''); // Remove empty responses
+      question.responseList = question.responseList.filter((response: string) => response.trim() !== ''); // Remove empty responses
       if (question.correctResponse !== null && question.responseList.length > 1) {
         question.responseList = question.responseList.map((response: string, index: number) => ({
           response,
@@ -84,6 +85,7 @@ export class CreateQuizComponent {
         difficulty: this.quizForm.value.difficulty,
         description: this.quizForm.value.description,
         certified: this.quizForm.value.certified,
+        price: this.quizForm.value.price,
         questions: this.questions
       };
       this.quizService.createQuiz(quizData).subscribe(response => {

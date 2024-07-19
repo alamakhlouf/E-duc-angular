@@ -26,8 +26,8 @@
             <li class="tag__item"><i class="fas fa-clock mr-2"></i>{{ quizDetails.quiz.questions.length }} Minutes</li>
         </ul>
         <a class="btn btn-primary btn-full-width btn-color" (click)="click()">
-            <ng-container *ngIf="quizDetails.score == -1">Get now</ng-container>
-            <ng-container *ngIf="quizDetails.score != -1">Start Quiz</ng-container>
+            <ng-container *ngIf="quizDetails.score == null">Get now</ng-container>
+            <ng-container *ngIf="quizDetails.score ">Start Quiz</ng-container>
         </a>
     </div>
 </article>

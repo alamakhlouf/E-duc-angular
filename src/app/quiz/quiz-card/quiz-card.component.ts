@@ -9,7 +9,7 @@ export class QuizCardComponent {
   @Input() quiz: any;
   @Input() hasQuiz!: boolean;
   @Output() deleteQuiz = new EventEmitter<number>();
-
+  role: any = localStorage.getItem("role");
   goToDetails(idQuiz: number) {
     // Add your navigation logic here
   }

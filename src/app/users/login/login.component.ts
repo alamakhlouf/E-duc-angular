@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {AuthentificationService} from "../services/authentification.service";
-import {Router} from "@angular/router";
-import {ModalService} from "../services/modal.service";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { AuthentificationService } from "../services/authentification.service";
+import { Router } from "@angular/router";
+import { ModalService } from "../services/modal.service";
 
 @Component({
   selector: 'app-login',
@@ -14,13 +14,13 @@ export class LoginComponent {
   formSignup!: FormGroup;
 
   constructor(private fb: FormBuilder, private authService: AuthentificationService,
-              private router: Router, private modalService: ModalService) {
+    private router: Router, private modalService: ModalService) {
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.formLogin = this.fb.group({
-      username : this.fb.control(""),
-      password : this.fb.control("")
+      username: this.fb.control(""),
+      password: this.fb.control("")
     })
 
     this.formSignup = this.fb.group({
@@ -29,12 +29,12 @@ export class LoginComponent {
     });
   }
 
-  handleLogin(){
+  handleLogin() {
     console.log(this.formLogin.value)
     let username = this.formLogin.value.username;
     let pwd = this.formLogin.value.password;
     this.authService.login(username, pwd).subscribe({
-      next : (data) => {
+      next: (data) => {
         this.authService.loadProfile(data);
         console.log(data)
         this.router.navigateByUrl("/admin")

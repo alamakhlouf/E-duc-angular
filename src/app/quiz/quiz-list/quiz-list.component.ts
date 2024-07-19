@@ -12,10 +12,11 @@ export class QuizListComponent implements OnInit {
   quizList!: QuizListModel[];
   deleteCourseId!: string;
   isButtonClicked: boolean = false;
-
+  role: any = localStorage.getItem("role")
   constructor(private quizService: QuizServiceService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+
     this.quizService.getQuizList().subscribe((data) => (this.quizList = data));
   }
 

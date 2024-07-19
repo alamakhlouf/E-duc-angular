@@ -77,7 +77,7 @@ export class CourseDefaultComponent {
     if (categoryCode === 'all') {
       this.ngOnInit();
     } else {
-      this.http.get(`http://localhost:8080/cours/getAllCourByCategory/${categoryCode}`).subscribe(
+      this.http.get(`http://localhost:8081/cours/getAllCourByCategory/${categoryCode}`).subscribe(
         (data: any) => {
           this.listCour = data;
         },

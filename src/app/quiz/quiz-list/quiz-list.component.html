@@ -1,4 +1,4 @@
-<div class="top-right-button">
+<div class="top-right-button" *ngIf="role == 'ADMIN' ">
     <button class="btn btn-color btn-primary" (click)="goToCreateQuiz()">Create Quiz</button>
 </div>
 <div class="row paddingCard">

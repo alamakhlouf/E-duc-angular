@@ -6,19 +6,22 @@
     <div class="filter-container">
       <div class="category-buttons">
         <button class="category-button" data-category="" (click)="filterCourses('all')">Toutes les catégories</button>
-        <button *ngFor="let p of listCategory" class="category-button" data-category="development" (click)="filterCourses(p.categorie.idCategory)">{{p.categorie.name}}</button>
+        <button *ngFor="let p of listCategory" class="category-button" data-category="development"
+          (click)="filterCourses(p.categorie.idCategory)">{{p.categorie.name}}</button>
       </div>
     </div>
 
     <!-- Liste des cours -->
     <div class="courses-container">
       <div class="course-card" data-category="development" data-type="free" *ngFor="let p of listCour">
-        <img [src]="'http://localhost:8080/download/'+p.coverpicture" alt="Image du cours">
-        <p class="card__description"><i class="fa fa-graduation-cap" aria-hidden="true" style="margin-right: 8px;"></i><span style="margin-left: 8px;">{{p.categoryName}}</span></p>
+        <img [src]="'http://localhost:8081/download/'+p.coverpicture" alt="Image du cours">
+        <p class="card__description"><i class="fa fa-graduation-cap" aria-hidden="true"
+            style="margin-right: 8px;"></i><span style="margin-left: 8px;">{{p.categoryName}}</span></p>
         <h2>{{p.name}}</h2>
         <p>{{p.description}}</p>
 
-        <p *ngIf="p.payed" class="card__description"><i class="fa fa-lock" aria-hidden="true" style="margin-right: 8px;"></i><span style="margin-left: 8px;">Premium</span></p>
+        <p *ngIf="p.payed" class="card__description"><i class="fa fa-lock" aria-hidden="true"
+            style="margin-right: 8px;"></i><span style="margin-left: 8px;">Premium</span></p>
 
         <div class="buttons-container">
           <button class="button" *ngIf="p.payed">Voir Programme</button>
@@ -29,7 +32,8 @@
 
     <!-- Pagination -->
     <div class="pagination">
-      <button class="pagination-button" *ngFor="let page of totalPagesArray" [class.disabled]="page === currentPage+1" (click)="pagination(page)">{{page}}</button>
+      <button class="pagination-button" *ngFor="let page of totalPagesArray" [class.disabled]="page === currentPage+1"
+        (click)="pagination(page)">{{page}}</button>
     </div>
   </div>
 </section>
